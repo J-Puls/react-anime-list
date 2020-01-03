@@ -1,0 +1,35 @@
+.figure-img{
+    object-fit: cover;
+}
+figure .lead{
+    display: -webkit-box;
+    line-height: 20px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+@media screen and (max-width: 768px){
+    .display-img{
+        height: 230px !important;
+    }
+}
+@media screen and (min-width: 768px){
+    .display-img{
+        height: 230px !important;
+    }
+}
+@media screen and (min-width: 1024px){
+    .display-img{
+        height: 300px !important;
+    }
+}
+@media screen and (min-width: 1365px){
+    .display-img{
+        height: 360px !important;
+    }
+}
+
+.delete-btn{
+    
+    right: 10px;
+}
