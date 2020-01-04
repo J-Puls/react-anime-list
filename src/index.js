@@ -16,7 +16,6 @@ import ModalBody from "react-bootstrap/ModalBody";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import ModalTitle from "react-bootstrap/ModalTitle";
 
-
 class Page extends React.Component {
   constructor(props) {
     super(props);
