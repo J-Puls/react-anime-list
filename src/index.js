@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import * as builtin_titles from "./builtin_titles";
+import titles from "./builtin_titles";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Figure from "react-bootstrap/Figure";
@@ -16,7 +16,6 @@ import ModalBody from "react-bootstrap/ModalBody";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import ModalTitle from "react-bootstrap/ModalTitle";
 
-const titles = builtin_titles.titles;
 
 class Page extends React.Component {
   constructor(props) {
@@ -44,9 +43,10 @@ class Page extends React.Component {
     if (query != "") {
       const request = await fetch(
           "https://api.jikan.moe/v3/search/anime?q=" + query + "&limit=1"
-        ),
+        ).catch(error => console.log("Something went wrong...", error)),
         response = await request.json(),
         result = response.results[0];
+        console.log(request);
         this.setState({
           newTitle: {
             mal_id: result.mal_id,
