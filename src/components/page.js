@@ -7,6 +7,8 @@ import { InfoModal } from "./info_modal.js";
 import { Header } from "./header.js";
 import { SearchForm } from "./search_form.js";
 import { UpdateModal } from "./update_modal.js"
+import { LoadingSpinner } from "./loading_spinner.js"
+import { trackPromise } from 'react-promise-tracker';
 
 export class Page extends React.Component {
     constructor(props) {
@@ -36,35 +38,36 @@ export class Page extends React.Component {
     }
   
     async findTitle(e) {
-      e.preventDefault();
-      const query = document.getElementById("title").value;
-       // eslint-disable-next-line
-      if (query != "") {
-        const request = await fetch(
-            "https://api.jikan.moe/v3/search/anime?q=" + query + "&limit=1"
-          ).catch(error => console.log("Something went wrong...", error)),
-          response = await request.json(),
-          result = response.results[0];
+        e.preventDefault();
+        const query = document.getElementById("title").value;
+        // eslint-disable-next-line
+        if (query != "") {
+          
+          const request = await trackPromise(fetch(
+              "https://api.jikan.moe/v3/search/anime?q=" + query + "&limit=1"
+            )).catch(error => console.log("Something went wrong...", error)),
+            response = await request.json(),
+            result = response.results[0];
 
-          this.setState({
-            newTitle: {
-              mal_id: 1,
-              title: result.title,
-              score: result.score,
-              airing: result.airing,
-              rated: result.rated,
-              episodes: result.episodes,
-              synopsis: result.synopsis,
-              image_url: result.image_url,
-              url: result.url
-          }
-          })
-         this.openPreviewModal();
-         document.getElementById("title").value = "";
-  
-      } else {
-        alert("Please enter a search term.");
-      };
+            this.setState({
+              newTitle: {
+                mal_id: 1,
+                title: result.title,
+                score: result.score,
+                airing: result.airing,
+                rated: result.rated,
+                episodes: result.episodes,
+                synopsis: result.synopsis,
+                image_url: result.image_url,
+                url: result.url
+            }
+            })
+          this.openPreviewModal();
+          document.getElementById("title").value = "";
+    
+        } else {
+          alert("Please enter a search term.");
+        };
     };
   
     openPreviewModal() {
@@ -208,6 +211,7 @@ export class Page extends React.Component {
           currentTitle={this.state.updateModalTitle}
           closeModal={() => this.closeUpdateModal()}
         />
+        <LoadingSpinner/>
         </div>
         
       );
