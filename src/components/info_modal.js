@@ -64,7 +64,7 @@ export function InfoModal(props) {
             <Button 
               variant="info"
               href={props.currentTitle.url}
-              target="_black"
+              target="_blank"
               rel="noopener"
               className="w-100"
               >
