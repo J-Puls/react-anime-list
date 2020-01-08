@@ -24,7 +24,7 @@ export function UpdateModal(props) {
         enforceFocus
         >
         
-            <ModalHeader closeButton  className="bg-secondary text-light">
+            <ModalHeader className="bg-secondary text-light">
             <ModalTitle>{props.currentTitle.title}</ModalTitle>
             </ModalHeader>
             <ModalBody id="previewModalBody"/>
@@ -83,11 +83,31 @@ export function UpdateModal(props) {
             </Col>
             </Row>
             <ModalFooter>
-                <Button 
-                    className="w-100"
-                    onClick={props.saveChanges}
-                >
-                Save Changes</Button>
+                <Row
+                className="w-100">
+                    <Col
+                        xs="6"
+                        >
+                    <Button 
+                        className="w-100"
+                        variant="success"
+                        onClick={() => props.saveChanges(props.objid)}
+                    >
+                    Save Changes
+                    </Button>
+                    </Col>
+                    <Col
+                        xs="6"
+                    >
+                    <Button
+                        className="w-100"
+                        variant="outline-secondary"
+                        onClick={props.closeModal}
+                    >
+                        Cancel
+                    </Button>
+                    </Col>
+                </Row>
             </ModalFooter>
       </Modal>
   )};

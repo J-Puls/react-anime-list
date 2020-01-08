@@ -62,6 +62,7 @@ export function InfoModal(props) {
         </Row>
         <ModalFooter>
             <Button 
+              variant="info"
               href={props.currentTitle.url}
               target="_black"
               rel="noopener"

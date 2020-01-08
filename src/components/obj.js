@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Figure from "react-bootstrap/Figure";
+import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 export default class Obj extends React.Component {
@@ -19,33 +20,41 @@ export default class Obj extends React.Component {
             <Figure.Caption className="text-light">
               {"Rating: " + this.props.score + " / 10"}
             </Figure.Caption>
-            <Button
-              block
-              size="md"
-              variant="outline-info"
-              objid={this.props.objID}
-              onClick={this.props.infoClick}
-            >
-              More Info
-            </Button>
-            <Button
+            <Row>
+              <Col xs="4" className="p-1 m-0">
+                <Button
                   block
                   size="md"
-                  variant="outline-success"
+                  variant="info"
                   objid={this.props.objID}
-                  onClick={this.props.updateClick}
+                  onClick={this.props.infoClick}
                 >
-                Update
+                <i class="material-icons">info</i>
               </Button>
-            <Button
-              block
-              size="md"
-              variant="danger"
-              objid={this.props.objID}
-              onClick={this.props.deleteClick}
-            >
-              Remove
-            </Button>
+              </Col>
+              <Col xs="4" className="p-1 m-0">
+                <Button
+                    block
+                    size="md"
+                    variant="success"
+                    objid={this.props.objID}
+                    onClick={this.props.updateClick}
+                  >
+                  <i class="material-icons">edit</i>
+                </Button>
+              </Col>
+              <Col xs="4" className="p-1 m-0">
+                <Button
+                  block
+                  size="md"
+                  variant="danger"
+                  objid={this.props.objID}
+                  onClick={this.props.deleteClick}
+                >
+                  <i class="material-icons">delete</i>
+              </Button>
+              </Col>
+            </Row>
           </Figure>
         </Col>
       );

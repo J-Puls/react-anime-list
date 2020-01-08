@@ -19,13 +19,19 @@ export class Page extends React.Component {
         newTitle: {},
         infoModalTitle: {},
         updateModalTitle: {},
+        updateTitleID: ""
       };
     }
   
     addTitle(newTitle) {
-      const toAdd = [newTitle];
+      const list = this.state.titleList,
+      toAdd = [newTitle];
+      console.log(list)
+      list.forEach(item => {
+        item.mal_id ++;
+      });
       this.setState({
-        titleList: toAdd.concat(this.state.titleList)
+        titleList: toAdd.concat(list)
       });
     }
   
@@ -39,10 +45,10 @@ export class Page extends React.Component {
           ).catch(error => console.log("Something went wrong...", error)),
           response = await request.json(),
           result = response.results[0];
-          console.log(request);
+
           this.setState({
             newTitle: {
-              mal_id: result.mal_id,
+              mal_id: 1,
               title: result.title,
               score: result.score,
               airing: result.airing,
@@ -111,16 +117,21 @@ export class Page extends React.Component {
       });
       
     };
-  
-    saveChanges(){
+
+    closeUpdateModal(){
+      this.setState({
+        updateModalVis: false
+      });
+    };
+    saveChanges(objid){
       let currentTitle = this.state.updateModalTitle,
-            updatedTitle = document.querySelector('#updateTitle').value,
-            updatedSynopsis = document.querySelector('#updateSynopsis').value,
-            updatedEpisodes = document.querySelector('#updateEpisodes').value,
-            updatedScore = document.querySelector('#updateScore').value,
-            updatedRated = document.querySelector('#updateRated').value;
-            updatedScore = (updatedScore > 10) ? 10 : updatedScore
-            updatedScore = (updatedScore < 0) ? 0: updatedScore;
+          updatedTitle = document.querySelector('#updateTitle').value,
+          updatedSynopsis = document.querySelector('#updateSynopsis').value,
+          updatedEpisodes = document.querySelector('#updateEpisodes').value,
+          updatedScore = document.querySelector('#updateScore').value,
+          updatedRated = document.querySelector('#updateRated').value;
+          updatedScore = (updatedScore > 10) ? 10 : updatedScore
+          updatedScore = (updatedScore < 0) ? 0: updatedScore;
       const updateTitle = {
           mal_id: currentTitle.mal_id,
           title: updatedTitle,
@@ -132,10 +143,12 @@ export class Page extends React.Component {
           image_url: currentTitle.image_url,
           url: currentTitle.url
         };
-      const aTitles = this.state.titleList.splice(0, (currentTitle.mal_id - 1)),
-            bTitles = this.state.titleList.splice((currentTitle.mal_id -1), this.state.titleList.length),
-            newList = aTitles.concat(updateTitle).concat(bTitles);
-        
+      const list = this.state.titleList,
+            aList = list.slice(0, currentTitle.mal_id - 1),
+            bList = list.slice(currentTitle.mal_id, list.length),
+            newList = aList.concat(updateTitle).concat(bList);
+      console.log(newList);
+      
       this.setState({
         updateModalVis: false,
         titleList: newList
@@ -184,6 +197,7 @@ export class Page extends React.Component {
           modalVisible={this.state.updateModalVis}
           saveChanges={() => this.saveChanges()}
           currentTitle={this.state.updateModalTitle}
+          closeModal={() => this.closeUpdateModal()}
         />
         </div>
         

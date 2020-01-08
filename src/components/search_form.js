@@ -18,7 +18,7 @@ export class SearchForm extends React.Component {
               id="title"
               size="lg"
               type="text"
-              placeholder="anime title"
+              placeholder="search"
             ></FormControl>
             <small id="titleHelp" className="form-text mb-2">
               Enter the title of the anime you wish to add.
