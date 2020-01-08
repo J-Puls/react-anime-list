@@ -1,11 +1,12 @@
 import React from "react";
 import titles from "../builtin_titles";
 import Container from "react-bootstrap/Container";
-import { TitlesDisplay } from "./titles_display.js"
-import { PreviewModal } from "./preview_modal.js"
-import { InfoModal } from "./info_modal.js"
-import { Header } from "./header.js"
-import { SearchForm } from "./search_form.js"
+import { TitlesDisplay } from "./titles_display.js";
+import { PreviewModal } from "./preview_modal.js";
+import { InfoModal } from "./info_modal.js";
+import { Header } from "./header.js";
+import { SearchForm } from "./search_form.js";
+import { UpdateModal } from "./update_modal.js"
 
 export class Page extends React.Component {
     constructor(props) {
@@ -14,8 +15,10 @@ export class Page extends React.Component {
         titleList: titles,
         previewModalVis: false,
         infoModalVis: false,
+        updateModalVis: false,
         newTitle: {},
-        infoModalTitle: {}
+        infoModalTitle: {},
+        updateModalTitle: {},
       };
     }
   
@@ -55,9 +58,8 @@ export class Page extends React.Component {
   
       } else {
         alert("Please enter a search term.");
-  
-      }
-    }
+      };
+    };
   
     openPreviewModal() {
       this.setState({
@@ -96,6 +98,50 @@ export class Page extends React.Component {
       this.closePreviewModal();
     };
   
+    openUpdateModal(title){
+      const currentID = title.target.getAttribute("objid");
+      const currentTitle = this.state.titleList.filter(function(value, index, arr) {
+         // eslint-disable-next-line
+          return index == currentID;
+        });
+      
+      this.setState({
+        updateModalTitle: currentTitle[0],
+        updateModalVis: true
+      });
+      
+    };
+  
+    saveChanges(){
+      let currentTitle = this.state.updateModalTitle,
+            updatedTitle = document.querySelector('#updateTitle').value,
+            updatedSynopsis = document.querySelector('#updateSynopsis').value,
+            updatedEpisodes = document.querySelector('#updateEpisodes').value,
+            updatedScore = document.querySelector('#updateScore').value,
+            updatedRated = document.querySelector('#updateRated').value;
+            updatedScore = (updatedScore > 10) ? 10 : updatedScore
+            updatedScore = (updatedScore < 0) ? 0: updatedScore;
+      const updateTitle = {
+          mal_id: currentTitle.mal_id,
+          title: updatedTitle,
+          score: updatedScore,
+          airing: currentTitle.airing,
+          rated: updatedRated,
+          episodes: updatedEpisodes,
+          synopsis: updatedSynopsis,
+          image_url: currentTitle.image_url,
+          url: currentTitle.url
+        };
+      const aTitles = this.state.titleList.splice(0, (currentTitle.mal_id - 1)),
+            bTitles = this.state.titleList.splice((currentTitle.mal_id -1), this.state.titleList.length),
+            newList = aTitles.concat(updateTitle).concat(bTitles);
+        
+      this.setState({
+        updateModalVis: false,
+        titleList: newList
+      });
+    };
+
     deleteTitle(title) {
       // grab objid attribute of button
       const toDeleteID = title.target.getAttribute("objid");
@@ -120,6 +166,7 @@ export class Page extends React.Component {
             titles={this.state.titleList}
             deleteClick={i => this.deleteTitle(i)}
             infoClick={i => this.openInfoModal(i)}
+            updateClick={i => this.openUpdateModal(i)}
           />
         </Container>
         <PreviewModal 
@@ -132,6 +179,11 @@ export class Page extends React.Component {
           modalVisible={this.state.infoModalVis}
           closeModal={() => this.closeInfoModal()}
           currentTitle={this.state.infoModalTitle}
+        />
+        <UpdateModal 
+          modalVisible={this.state.updateModalVis}
+          saveChanges={() => this.saveChanges()}
+          currentTitle={this.state.updateModalTitle}
         />
         </div>
         

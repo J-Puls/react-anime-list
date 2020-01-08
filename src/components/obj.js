@@ -15,6 +15,7 @@ export default class Obj extends React.Component {
               className="display-img shadow"
             />
             <span className="lead text-white">{this.props.title}</span>
+            
             <Figure.Caption className="text-light">
               {"Rating: " + this.props.score + " / 10"}
             </Figure.Caption>
@@ -27,6 +28,15 @@ export default class Obj extends React.Component {
             >
               More Info
             </Button>
+            <Button
+                  block
+                  size="md"
+                  variant="outline-success"
+                  objid={this.props.objID}
+                  onClick={this.props.updateClick}
+                >
+                Update
+              </Button>
             <Button
               block
               size="md"

@@ -21,6 +21,7 @@ export class TitlesDisplay extends React.Component {
                 url={obj.url}
                 deleteClick={this.props.deleteClick}
                 infoClick={this.props.infoClick}
+                updateClick={this.props.updateClick}
               />
             );
           })}
