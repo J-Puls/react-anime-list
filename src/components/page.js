@@ -164,7 +164,16 @@ export class Page extends React.Component {
           // eslint-disable-next-line
           return index != toDeleteID;
         })
+      }, () => {
+        const list = this.state.titleList;
+        list.forEach((item, index) => {
+          item.mal_id = index + 1;
+        });
+        this.setState({
+          titleList: list
+        });
       });
+      
     };
   
   

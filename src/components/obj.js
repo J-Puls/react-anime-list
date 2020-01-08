@@ -30,7 +30,7 @@ export default class Obj extends React.Component {
                   objid={this.props.objID}
                   onClick={this.props.infoClick}
                 >
-                <i className="material-icons">info</i>
+                <i className="material-icons" objid={this.props.objID}>info</i>
               </Button>
               </Col>
               <Col xs="4" className="p-1 m-0">
@@ -42,7 +42,7 @@ export default class Obj extends React.Component {
                     objid={this.props.objID}
                     onClick={this.props.updateClick}
                   >
-                  <i className="material-icons">edit</i>
+                  <i className="material-icons" objid={this.props.objID}>edit</i>
                 </Button>
               </Col>
               <Col xs="4" className="p-1 m-0">
@@ -54,7 +54,7 @@ export default class Obj extends React.Component {
                   objid={this.props.objID}
                   onClick={this.props.deleteClick}
                 >
-                  <i className="material-icons">delete</i>
+                  <i className="material-icons" objid={this.props.objID}>delete</i>
               </Button>
               </Col>
             </Row>
