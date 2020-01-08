@@ -7,8 +7,8 @@ import Col from "react-bootstrap/Col";
 export default class Obj extends React.Component {
     render() {
       return (
-        <Col xs="6" sm="4" md="3" className="p-sm-3">
-          <Figure>
+        <Col xs="6" sm="4" md="3"  className="p-sm-3">
+          <Figure className="p-3 shadow-sm rounded">
             <Figure.Image
               rounded
               alt={this.props.title + " thumbnail"}
@@ -23,35 +23,38 @@ export default class Obj extends React.Component {
             <Row>
               <Col xs="4" className="p-1 m-0">
                 <Button
+                  className="p-0 pt-1"
                   block
                   size="md"
                   variant="info"
                   objid={this.props.objID}
                   onClick={this.props.infoClick}
                 >
-                <i class="material-icons">info</i>
+                <i className="material-icons">info</i>
               </Button>
               </Col>
               <Col xs="4" className="p-1 m-0">
                 <Button
+                    className="p-0 pt-1"
                     block
                     size="md"
                     variant="success"
                     objid={this.props.objID}
                     onClick={this.props.updateClick}
                   >
-                  <i class="material-icons">edit</i>
+                  <i className="material-icons">edit</i>
                 </Button>
               </Col>
               <Col xs="4" className="p-1 m-0">
                 <Button
+                  className="p-0 pt-1"
                   block
                   size="md"
                   variant="danger"
                   objid={this.props.objID}
                   onClick={this.props.deleteClick}
                 >
-                  <i class="material-icons">delete</i>
+                  <i className="material-icons">delete</i>
               </Button>
               </Col>
             </Row>
