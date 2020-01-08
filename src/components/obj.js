@@ -8,7 +8,7 @@ export default class Obj extends React.Component {
     render() {
       return (
         <Col xs="6" sm="4" md="3"  className="p-sm-3">
-          <Figure className="p-3">
+          <Figure>
             <Figure.Image
               rounded
               alt={this.props.title + " thumbnail"}
