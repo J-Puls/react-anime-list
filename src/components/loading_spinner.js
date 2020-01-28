@@ -1,22 +1,22 @@
 import React from "react";
-import spinner from "../assets/Eclipse-0.6s-100px.svg"
+import spinner from "../assets/Eclipse-0.6s-100px.svg";
 import { usePromiseTracker } from "react-promise-tracker";
 
-export function LoadingSpinner (props){
-    const { promiseInProgress } = usePromiseTracker();
-    
-    return(
-        promiseInProgress && 
-        <div className="spinner-overlay">
-            <Triangle/>
-        </div>
-    );
-}
+// if fetch call is initiated, loading spinner is rendered
+const LoadingSpinner = props => {
+  const { promiseInProgress } = usePromiseTracker();
 
-class Triangle extends React.Component{
-    render(){
-        return(
-            <img src={spinner} className="loading-spinner"></img>
-        );
-    }
-}
+  return (
+    promiseInProgress && (
+      <div className="spinner-overlay">
+        <Spinner />
+      </div>
+    )
+  );
+};
+
+const Spinner = () => {
+  return <img src={spinner} alt="loading..." className="loading-spinner" />;
+};
+
+export default LoadingSpinner;

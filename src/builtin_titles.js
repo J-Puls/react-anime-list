@@ -1,6 +1,6 @@
 const titles = [
   {
-    "mal_id": 1,
+    "mal_id": 5356,
     "title": "Canaan",
     "score": 7.32,
     "airing": false,
@@ -11,7 +11,7 @@ const titles = [
     "url": "https://myanimelist.net/anime/5356/Canaan"
   },
   {
-    "mal_id": 2,
+    "mal_id": 185,
     "title": "Elfen Lied",
     "score": 7.69,
     "airing": false,
@@ -22,7 +22,7 @@ const titles = [
     "url": "https://myanimelist.net/anime/226/Elfen_Lied"
   },
   {
-    "mal_id": 3,
+    "mal_id": 6030,
     "title": "Needless",
     "score": 7.34,
     "airing": false,
@@ -33,7 +33,7 @@ const titles = [
     "url": "https://myanimelist.net/anime/6030/Needless"
   },
   {
-    "mal_id": 4,
+    "mal_id": 226,
     "title": "Initial D First Stage",
     "score": 8.3,
     "airing": false,

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Page } from "./components/page.js"
+import App from "./components/app"
 
-ReactDOM.render(<Page />, document.getElementById("root"));
+// render application
+ReactDOM.render(<App />, document.getElementById("root"));
