@@ -1,9 +1,8 @@
-const titles = [
-  {
+const titles = [{
     "mal_id": 5356,
     "title": "Canaan",
     "score": 7.32,
-    "airing": false,
+    "airing": true,
     "rated": "R",
     "episodes": 13,
     "synopsis": "Oosawa Maria is a Japanese photographer currently working in Shanghai, China. Along with her partner Mino, she searches for potential newsworthy stories throughout the city. When strange events occur...",

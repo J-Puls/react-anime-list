@@ -60,9 +60,9 @@ const App = props => {
         }
       }
       document.getElementById("title").value = "";
-      if (titleExists){
+      if (titleExists) {
         alert("This title is already in your list!");
-      }else{
+      } else {
         setNewTitle({
           mal_id: result.mal_id,
           title: result.title,
@@ -76,7 +76,6 @@ const App = props => {
         });
         setPreviewModalVis(true);
       }
-      
     } else {
       alert("Please enter a search term.");
     }
@@ -126,6 +125,7 @@ const App = props => {
     const updatedTitle = document.querySelector("#updateTitle").value,
       updatedSynopsis = document.querySelector("#updateSynopsis").value,
       updatedEpisodes = document.querySelector("#updateEpisodes").value,
+      updatedAiring = document.querySelector("#updateAiring").checked,
       updatedRated = document.querySelector("#updateRated").value;
     let updatedScore = document.querySelector("#updateScore").value;
 
@@ -138,6 +138,7 @@ const App = props => {
       if (x.mal_id === currentId) {
         x.title = updatedTitle;
         x.synopsis = updatedSynopsis;
+        x.airing = updatedAiring;
         x.episodes = updatedEpisodes;
         x.score = updatedScore;
         x.rated = updatedRated;

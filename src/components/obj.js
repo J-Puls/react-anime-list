@@ -4,7 +4,7 @@ import Figure from "react-bootstrap/Figure";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const Obj = (props) => {
+const Obj = props => {
   return (
     <Col xs="6" sm="4" md="3" className="p-sm-3">
       <Figure>

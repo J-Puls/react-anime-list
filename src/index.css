@@ -1,62 +1,60 @@
-body{
-    background: #121212 !important;
+body {
+  background: #121212 !important;
 }
 
-.figure-img{
-    object-fit: cover;
+.figure-img {
+  object-fit: cover;
 }
-figure .lead{
-    display: -webkit-box;
-    line-height: 20px;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;  
-    overflow: hidden;
+figure .lead {
+  display: -webkit-box;
+  line-height: 1.5em;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-@media screen and (max-width: 768px){
-    .display-img{
-        height: 230px !important;
-    }
+@media screen and (max-width: 768px) {
+  .display-img {
+    height: 230px !important;
+  }
 }
-@media screen and (min-width: 768px){
-    .display-img{
-        height: 230px !important;
-    }
+@media screen and (min-width: 768px) {
+  .display-img {
+    height: 230px !important;
+  }
 }
-@media screen and (min-width: 1024px){
-    .display-img{
-        height: 300px !important;
-    }
+@media screen and (min-width: 1024px) {
+  .display-img {
+    height: 300px !important;
+  }
 }
-@media screen and (min-width: 1365px){
-    .display-img{
-        height: 360px !important;
-    }
-}
-
-.delete-btn{
-    
-    right: 10px;
+@media screen and (min-width: 1365px) {
+  .display-img {
+    height: 360px !important;
+  }
 }
 
-.spinner-overlay{
-    position: fixed;
-    top:0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000000cc;
-    z-index: 100;
-    margin: 0;
-    padding: 0;
+.delete-btn {
+  right: 10px;
 }
-.loading-spinner{
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    z-index: 101;
-    
+
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000cc;
+  z-index: 100;
+  margin: 0;
+  padding: 0;
+}
+.loading-spinner {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 101;
 }

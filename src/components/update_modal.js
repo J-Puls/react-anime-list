@@ -3,20 +3,11 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
+import FormLabel from "react-bootstrap/FormLabel";
 
 const UpdateModal = props => {
-  let airing;
-
-  switch (props.currentTitle.airing) {
-    case true:
-      airing = "Yes";
-      break;
-    case false:
-      airing = "No";
-      break;
-    default:
-      break;
-  }
 
   return (
     <Modal
@@ -30,7 +21,7 @@ const UpdateModal = props => {
         <Modal.Title>{props.currentTitle.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body id="previewModalBody" />
-      <Row>
+      <Row className="mb-3">
         <Col xs="4" className="mx-auto">
           <img
             src={props.currentTitle.image_url}
@@ -39,58 +30,80 @@ const UpdateModal = props => {
           ></img>
         </Col>
         <Col className="container" xs="10">
-          <p className="lead">
-            Title:{" "}
-            <input
-              type="text"
-              defaultValue={props.currentTitle.title}
+          <FormLabel className="lead">Title</FormLabel>
+          <InputGroup>
+            <FormControl
               id="updateTitle"
-            />
-          </p>
-          <p>
-            <span className="lead">
-              Synopsis:
-              <br />
-            </span>
-            <textarea
-              cols="40"
-              rows="10"
-              defaultValue={props.currentTitle.synopsis}
+              defaultValue={props.currentTitle.title}
+              aria-label="title"
+            ></FormControl>
+          </InputGroup>
+
+          <FormLabel className="lead">Synopsis</FormLabel>
+          <InputGroup>
+            <FormControl
+              as="textarea"
+              rows="5"
               id="updateSynopsis"
-            ></textarea>
-          </p>
-          <p>
-            <span className="lead">Airing: </span>
-            <span> {airing}</span>
-          </p>
-          <p>
-            <span className="lead"># of episodes: </span>
-            <input
-              type="number"
-              defaultValue={props.currentTitle.episodes}
-              id="updateEpisodes"
+              defaultValue={props.currentTitle.synopsis}
+              aria-label="synopsis"
+            ></FormControl>
+          </InputGroup>
+          
+          <Row>
+            <Col xs="6">
+            <FormLabel className="lead">Airing</FormLabel>
+          <InputGroup>
+            <InputGroup.Checkbox
+              defaultChecked={props.currentTitle.airing}
+              aria-label="Checkbox for following text input"
+              id="updateAiring"
             />
-          </p>
-          <p>
-            <span className="lead">Score: </span>
-            <input
-              type="number"
-              defaultValue={props.currentTitle.score}
-              min={1}
-              max={10}
-              step={0.5}
-              id="updateScore"
-            />
-            <span> / 10</span>
-          </p>
-          <p>
-            <span className="lead">Rated: </span>
-            <input
-              type="text"
-              defaultValue={props.currentTitle.rated}
-              id="updateRated"
-            />
-          </p>
+          </InputGroup>
+            </Col>
+            <Col xs="6">
+              <FormLabel className="lead">Episodes</FormLabel>
+              <InputGroup>
+                <FormControl
+                  id="updateEpisodes"
+                  type="number"
+                  defaultValue={props.currentTitle.episodes}
+                  aria-label="episodes"
+                ></FormControl>
+              </InputGroup>
+            </Col>
+            <Col xs="6">
+              <FormLabel className="lead">Score</FormLabel>
+              <InputGroup>
+                <FormControl
+                  id="updateScore"
+                  type="number"
+                  min={1}
+                  max={10}
+                  step={0.5}
+                  defaultValue={props.currentTitle.score}
+                  aria-label="score"
+                ></FormControl>
+              </InputGroup>
+            </Col>
+            <Col xs="6">
+              <FormLabel className="lead">Rating</FormLabel>
+              <InputGroup>
+                <FormControl
+                  id="updateRated"
+                  as="select"
+                  defaultValue={props.currentTitle.rated}
+                  aria-label="rating"
+                >
+                  <option value="G">G</option>
+                  <option value="PG">PG</option>
+                  <option value="PG-13">PG-13</option>
+                  <option value="R">R</option>
+                  <option value="R+">R+</option>
+                </FormControl>
+              </InputGroup>
+            </Col>
+          </Row>
         </Col>
       </Row>
       <Modal.Footer>
@@ -101,7 +114,7 @@ const UpdateModal = props => {
               variant="success"
               onClick={() => props.saveChanges(props.objid)}
             >
-              Save Changes
+              Save
             </Button>
           </Col>
           <Col xs="6">
