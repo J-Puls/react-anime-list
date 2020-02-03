@@ -1,2 +1,3 @@
-export { Obj } from 'obj.js';
-export { TitlesDisplay } from './titles_display.js';
+import App from "./app";
+
+export default App;

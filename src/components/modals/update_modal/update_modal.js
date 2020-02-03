@@ -6,27 +6,33 @@ import Modal from "react-bootstrap/Modal";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import FormLabel from "react-bootstrap/FormLabel";
+import { useDispatch, connect } from "react-redux";
+import { closeUpdateModal, saveTitleChanges } from '../../../state/actions';
 
 const UpdateModal = props => {
-
+  const dispatch = useDispatch();
+  const save = () => {
+    dispatch(saveTitleChanges(props.title.mal_id));
+    dispatch(closeUpdateModal())
+  }
   return (
     <Modal
-      show={props.modalVisible}
-      onHide={props.closeModal}
+      show={props.visible}
+      onHide={() => dispatch(closeUpdateModal())}
       size="large"
       backdrop="static"
       enforceFocus
     >
       <Modal.Header className="bg-secondary text-light">
-        <Modal.Title>{props.currentTitle.title}</Modal.Title>
+        <Modal.Title>{props.title.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body id="previewModalBody" />
       <Row className="mb-3">
         <Col xs="4" className="mx-auto">
           <img
-            src={props.currentTitle.image_url}
+            src={props.title.image_url}
             className="figure-img img-fluid rounded"
-            alt={props.currentTitle.title + " thumbnail"}
+            alt={props.title.title + " thumbnail"}
           ></img>
         </Col>
         <Col className="container" xs="10">
@@ -34,7 +40,7 @@ const UpdateModal = props => {
           <InputGroup>
             <FormControl
               id="updateTitle"
-              defaultValue={props.currentTitle.title}
+              defaultValue={props.title.title}
               aria-label="title"
             ></FormControl>
           </InputGroup>
@@ -45,7 +51,7 @@ const UpdateModal = props => {
               as="textarea"
               rows="5"
               id="updateSynopsis"
-              defaultValue={props.currentTitle.synopsis}
+              defaultValue={props.title.synopsis}
               aria-label="synopsis"
             ></FormControl>
           </InputGroup>
@@ -55,7 +61,7 @@ const UpdateModal = props => {
             <FormLabel className="lead">Airing</FormLabel>
           <InputGroup>
             <InputGroup.Checkbox
-              defaultChecked={props.currentTitle.airing}
+              defaultChecked={props.title.airing}
               aria-label="Checkbox for following text input"
               id="updateAiring"
             />
@@ -67,7 +73,7 @@ const UpdateModal = props => {
                 <FormControl
                   id="updateEpisodes"
                   type="number"
-                  defaultValue={props.currentTitle.episodes}
+                  defaultValue={props.title.episodes}
                   aria-label="episodes"
                 ></FormControl>
               </InputGroup>
@@ -81,7 +87,7 @@ const UpdateModal = props => {
                   min={1}
                   max={10}
                   step={0.5}
-                  defaultValue={props.currentTitle.score}
+                  defaultValue={props.title.score}
                   aria-label="score"
                 ></FormControl>
               </InputGroup>
@@ -92,7 +98,7 @@ const UpdateModal = props => {
                 <FormControl
                   id="updateRated"
                   as="select"
-                  defaultValue={props.currentTitle.rated}
+                  defaultValue={props.title.rated}
                   aria-label="rating"
                 >
                   <option value="G">G</option>
@@ -112,7 +118,7 @@ const UpdateModal = props => {
             <Button
               className="w-100"
               variant="success"
-              onClick={() => props.saveChanges(props.objid)}
+              onClick={() => save()}
             >
               Save
             </Button>
@@ -121,7 +127,7 @@ const UpdateModal = props => {
             <Button
               className="w-100"
               variant="outline-secondary"
-              onClick={props.closeModal}
+              onClick={() => dispatch(closeUpdateModal())}
             >
               Cancel
             </Button>
@@ -132,4 +138,12 @@ const UpdateModal = props => {
   );
 };
 
-export default UpdateModal;
+const mapStateToProps = state => {
+  return {
+    visible: state.updateModal.visibility,
+    title: state.updateModal.currentTitle
+  };
+};
+
+export default connect(mapStateToProps)(UpdateModal);
+

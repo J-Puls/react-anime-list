@@ -3,21 +3,26 @@ import Button from "react-bootstrap/Button";
 import Figure from "react-bootstrap/Figure";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { useDispatch } from "react-redux"
+import { removeTitle, openInfoModal, openUpdateModal } from "../../state/actions"
 
-const Obj = props => {
+const TitleObject = props => {
+  const dispatch = useDispatch();
+  const title = props.title;
+  const id = title.mal_id;
   return (
     <Col xs="6" sm="4" md="3" className="p-sm-3">
       <Figure>
         <Figure.Image
           rounded
-          alt={props.title + " thumbnail"}
-          src={props.image_url}
+          alt={title.title + " thumbnail"}
+          src={title.image_url}
           className="display-img shadow w-100"
         />
-        <span className="lead text-white">{props.title}</span>
+        <span className="lead text-white">{title.title}</span>
 
         <Figure.Caption className="text-light">
-          {"Rating: " + props.score + " / 10"}
+          {"Rating: " + title.score + " / 10"}
         </Figure.Caption>
         <Row className="w-100 m-0">
           <Col xs="4" className="p-1 m-0">
@@ -26,10 +31,10 @@ const Obj = props => {
               block
               size="md"
               variant="info"
-              objid={props.objID}
-              onClick={props.infoClick}
+              objid={title.objID}
+              onClick={() => dispatch(openInfoModal(title))}
             >
-              <i className="material-icons" objid={props.objID}>
+              <i className="material-icons">
                 info
               </i>
             </Button>
@@ -40,10 +45,10 @@ const Obj = props => {
               block
               size="md"
               variant="success"
-              objid={props.objID}
-              onClick={props.updateClick}
+              objid={title.mal_id}
+              onClick={() => dispatch(openUpdateModal(title))}
             >
-              <i className="material-icons" objid={props.objID}>
+              <i className="material-icons" objid={title.mal_id}>
                 edit
               </i>
             </Button>
@@ -54,10 +59,10 @@ const Obj = props => {
               block
               size="md"
               variant="danger"
-              objid={props.objID}
-              onClick={props.deleteClick}
+              objid={title.mal_id}
+              onClick={() => dispatch(removeTitle(id))}
             >
-              <i className="material-icons" objid={props.objID}>
+              <i className="material-icons" objid={title.mal_id}>
                 delete
               </i>
             </Button>
@@ -67,4 +72,5 @@ const Obj = props => {
     </Col>
   );
 };
-export default Obj;
+
+export default TitleObject;

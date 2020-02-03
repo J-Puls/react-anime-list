@@ -15,7 +15,7 @@ const LoadingSpinner = props => {
   );
 };
 
-const Spinner = () => {
+export const Spinner = () => {
   return <img src={spinner} alt="loading..." className="loading-spinner" />;
 };
 
