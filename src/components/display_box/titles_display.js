@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 const TitlesDisplay = props => {
   const titles = Array.from(props.titles);
   return (
-    <Row>
+    <Row className="justify-content-center">
       {titles.reverse().map(title => {
         return <TitleObject key={title.mal_id} title={title} />;
       })}

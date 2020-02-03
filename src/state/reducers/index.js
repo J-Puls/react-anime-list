@@ -3,7 +3,7 @@ import newTitle from "../reducers/newTitle";
 import previewModal from "../reducers/previewModal";
 import infoModal from "../reducers/infoModal";
 import updateModal from "../reducers/updateModal";
-
+import deleteModal from "../reducers/deleteModalReducer";
 // combineReducers alternative
 export const allReducers = (state={}, action) => {
     return ({
@@ -11,7 +11,8 @@ export const allReducers = (state={}, action) => {
         newTitle: newTitle(state.newTitle, action, state),
         previewModal: previewModal(state.previewModal, action, state),
         infoModal: infoModal(state.infoModal, action, state),
-        updateModal: updateModal(state.updateModal, action, state)
+        updateModal: updateModal(state.updateModal, action, state),
+        deleteModal: deleteModal(state.deleteModal, action, state),
     });
 }
 

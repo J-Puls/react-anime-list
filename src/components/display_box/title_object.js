@@ -4,7 +4,7 @@ import Figure from "react-bootstrap/Figure";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useDispatch } from "react-redux"
-import { removeTitle, openInfoModal, openUpdateModal } from "../../state/actions"
+import { removeTitle, openInfoModal, openUpdateModal, openDeleteModal } from "../../state/actions"
 
 const TitleObject = props => {
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ const TitleObject = props => {
               size="md"
               variant="danger"
               objid={title.mal_id}
-              onClick={() => dispatch(removeTitle(id))}
+              onClick={() => dispatch(openDeleteModal(title))}
             >
               <i className="material-icons" objid={title.mal_id}>
                 delete

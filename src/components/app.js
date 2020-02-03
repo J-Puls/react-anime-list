@@ -4,7 +4,7 @@ import TitlesDisplay from "./display_box/";
 import Header from "./header";
 import SearchForm from "./search_form";
 import LoadingSpinner from "./loading_spinner";
-import {PreviewModal, UpdateModal, InfoModal} from "./modals";
+import {PreviewModal, UpdateModal, InfoModal, DeleteModal} from "./modals";
 
 const App = () => {
   return (
@@ -18,6 +18,7 @@ const App = () => {
       <PreviewModal />
       <InfoModal />
       <UpdateModal />
+      <DeleteModal />
       <LoadingSpinner />
     </div>
   );
