@@ -4,17 +4,18 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
 import InputGroup from "react-bootstrap/InputGroup";
+import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import FormLabel from "react-bootstrap/FormLabel";
 import { useDispatch, connect } from "react-redux";
-import { closeUpdateModal, saveTitleChanges } from '../../../state/actions';
+import { closeUpdateModal, saveTitleChanges } from "../../../state/actions";
 
 const UpdateModal = props => {
   const dispatch = useDispatch();
-  const save = () => {
-    dispatch(saveTitleChanges(props.title.mal_id));
-    dispatch(closeUpdateModal())
-  }
+  const save = async () => {
+    await dispatch(saveTitleChanges(props.token, props.title.mal_id));
+    dispatch(closeUpdateModal());
+  };
   return (
     <Modal
       show={props.visible}
@@ -23,103 +24,107 @@ const UpdateModal = props => {
       backdrop="static"
       enforceFocus
     >
-      <Modal.Header className="bg-secondary text-light">
+      <Modal.Header className="text-light">
         <Modal.Title>{props.title.title}</Modal.Title>
       </Modal.Header>
-      <Modal.Body id="previewModalBody" />
-      <Row className="mb-3">
-        <Col xs="4" className="mx-auto">
-          <img
-            src={props.title.image_url}
-            className="figure-img img-fluid rounded"
-            alt={props.title.title + " thumbnail"}
-          ></img>
-        </Col>
-        <Col className="container" xs="10">
-          <FormLabel className="lead">Title</FormLabel>
-          <InputGroup>
-            <FormControl
-              id="updateTitle"
-              defaultValue={props.title.title}
-              aria-label="title"
-            ></FormControl>
-          </InputGroup>
+      <Modal.Body className="bkg-black" id="previewModalBody">
+        <Row className="mb-3 mx-0 bkg-black">
+          <Col className="container" xs="10">
+            <Form>
+              <FormLabel className="lead text-danger font-weight-bolder">
+                Title
+              </FormLabel>
+              <InputGroup>
+                <FormControl
+                  id="updateTitle"
+                  defaultValue={props.title.title}
+                  aria-label="title"
+                ></FormControl>
+              </InputGroup>
 
-          <FormLabel className="lead">Synopsis</FormLabel>
-          <InputGroup>
-            <FormControl
-              as="textarea"
-              rows="5"
-              id="updateSynopsis"
-              defaultValue={props.title.synopsis}
-              aria-label="synopsis"
-            ></FormControl>
-          </InputGroup>
-          
-          <Row>
-            <Col xs="6">
-            <FormLabel className="lead">Airing</FormLabel>
-          <InputGroup>
-            <InputGroup.Checkbox
-              defaultChecked={props.title.airing}
-              aria-label="Checkbox for following text input"
-              id="updateAiring"
-            />
-          </InputGroup>
-            </Col>
-            <Col xs="6">
-              <FormLabel className="lead">Episodes</FormLabel>
+              <FormLabel className="lead text-danger font-weight-bolder">
+                Synopsis
+              </FormLabel>
               <InputGroup>
                 <FormControl
-                  id="updateEpisodes"
-                  type="number"
-                  defaultValue={props.title.episodes}
-                  aria-label="episodes"
+                  as="textarea"
+                  rows="5"
+                  id="updateSynopsis"
+                  defaultValue={props.title.synopsis}
+                  aria-label="synopsis"
                 ></FormControl>
               </InputGroup>
-            </Col>
-            <Col xs="6">
-              <FormLabel className="lead">Score</FormLabel>
-              <InputGroup>
-                <FormControl
-                  id="updateScore"
-                  type="number"
-                  min={1}
-                  max={10}
-                  step={0.5}
-                  defaultValue={props.title.score}
-                  aria-label="score"
-                ></FormControl>
-              </InputGroup>
-            </Col>
-            <Col xs="6">
-              <FormLabel className="lead">Rating</FormLabel>
-              <InputGroup>
-                <FormControl
-                  id="updateRated"
-                  as="select"
-                  defaultValue={props.title.rated}
-                  aria-label="rating"
-                >
-                  <option value="G">G</option>
-                  <option value="PG">PG</option>
-                  <option value="PG-13">PG-13</option>
-                  <option value="R">R</option>
-                  <option value="R+">R+</option>
-                </FormControl>
-              </InputGroup>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+
+              <Row>
+                <Col xs="6">
+                  <FormLabel className="lead text-danger font-weight-bolder">
+                    Airing
+                  </FormLabel>
+
+                  <Form.Check
+                    type="switch"
+                    defaultChecked={props.title.airing}
+                    id="updateAiring"
+                    label=""
+                  />
+                </Col>
+                <Col xs="6">
+                  <FormLabel className="lead text-danger font-weight-bolder">
+                    Episodes
+                  </FormLabel>
+                  <InputGroup>
+                    <FormControl
+                      id="updateEpisodes"
+                      type="number"
+                      defaultValue={props.title.episodes}
+                      aria-label="episodes"
+                    ></FormControl>
+                  </InputGroup>
+                </Col>
+                <Col xs="6">
+                  <FormLabel className="lead text-danger font-weight-bolder">
+                    Score
+                  </FormLabel>
+                  <InputGroup>
+                    <FormControl
+                      id="updateScore"
+                      type="number"
+                      min={1}
+                      max={10}
+                      step={0.5}
+                      defaultValue={props.title.score}
+                      aria-label="score"
+                    ></FormControl>
+                  </InputGroup>
+                </Col>
+                <Col xs="6">
+                  <FormLabel className="lead text-danger font-weight-bolder">
+                    Rating
+                  </FormLabel>
+                  <InputGroup>
+                    <FormControl
+                      id="updateRated"
+                      as="select"
+                      defaultValue={props.title.rated}
+                      aria-label="rating"
+                    >
+                      <option value="G">G</option>
+                      <option value="PG">PG</option>
+                      <option value="PG-13">PG-13</option>
+                      <option value="R">R</option>
+                      <option value="R+">R+</option>
+                    </FormControl>
+                  </InputGroup>
+                </Col>
+              </Row>
+            </Form>
+          </Col>
+        </Row>
+      </Modal.Body>
       <Modal.Footer>
         <Row className="w-100">
           <Col xs="6">
-            <Button
-              className="w-100"
-              variant="success"
-              onClick={() => save()}
-            >
+            <Button className="w-100" variant="danger" onClick={() => save()}>
               Save
             </Button>
           </Col>
@@ -141,9 +146,9 @@ const UpdateModal = props => {
 const mapStateToProps = state => {
   return {
     visible: state.updateModal.visibility,
-    title: state.updateModal.currentTitle
+    title: state.updateModal.currentTitle,
+    token: state.userCreds.session_token
   };
 };
 
 export default connect(mapStateToProps)(UpdateModal);
-

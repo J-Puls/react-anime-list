@@ -1,20 +1,29 @@
-export const addTitle = (newTitle) => {
+import { getAuthorizedUserTitles } from "../utils";
+
+export const getUserTitles = (token) => {
+    return {
+        type: 'GET_USER_TITLES',
+        payload: getAuthorizedUserTitles(token)
+    }
+}
+
+export const addTitle = (token, newTitle) => {
     return {
         type: 'CONFIRM',
-        payload: newTitle
+        payload: {token, newTitle}
     }
 }
 
-export const removeTitle = (id) => {
+export const removeTitle = (token, idToRemove) => {
     return {
         type: 'REMOVE',
-        payload: id
+        payload: {token, idToRemove}
     }
 }
 
-export const saveTitleChanges = (id) => {
+export const saveTitleChanges = (token, id) => {
     return {
         type: 'MODIFY',
-        payload: id
+        payload: {token, id}
     }
 }

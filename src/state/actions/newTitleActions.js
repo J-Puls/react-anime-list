@@ -10,8 +10,20 @@ export const search = (titles) => {
     }
 }
 
-export const resetNewTitle = () => {
+export const nextTitle = () => {
     return {
-        type: 'RESET_NEW_TITLE'
+        type: 'NEXT_TITLE'
+    }
+}
+
+export const prevTitle = () => {
+    return {
+        type: 'PREV_TITLE'
+    }
+}
+
+export const resetSearchResults = () => {
+    return {
+        type: 'RESET_SEARCH_RESULTS'
     }
 }

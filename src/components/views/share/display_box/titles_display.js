@@ -1,14 +1,14 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
-import TitleObject from "./title_object";
+import ShareTitleObject from "./title_object";
 import { connect } from "react-redux";
 
-const TitlesDisplay = props => {
+const ShareTitlesDisplay = props => {
   const titles = Array.from(props.titles);
   return (
     <Row className="justify-content-center">
       {titles.reverse().map(title => {
-        return <TitleObject key={title.mal_id} title={title} />;
+        return <ShareTitleObject key={title.mal_id} title={title} />;
       })}
     </Row>
   );
@@ -16,8 +16,8 @@ const TitlesDisplay = props => {
 
 const mapStateToProps = state => {
   return {
-    titles: state.titles
+    titles: state.shareTitles
   };
 };
 
-export default connect(mapStateToProps)(TitlesDisplay);
+export default connect(mapStateToProps)(ShareTitlesDisplay);

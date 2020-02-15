@@ -15,14 +15,14 @@ const FailurePreviewModal = props => {
         <Modal.Title>Title Not Found</Modal.Title>
       </Modal.Header>
       <Modal.Body id="previewModalBody" />
-      <Row>
+      <Row className="mx-0">
         <Col xs="12">
           <Container>
-              <p className="lead text-center">We couldn't find anything for that.<br/>Please try a different search term.</p>
+              <p className="lead text-center text-light">We couldn't find anything for that.<br/>Please try a different search term.</p>
           </Container>
         </Col>
       </Row>
-      <Modal.Footer className="bg-dark text-light">
+      <Modal.Footer className="text-light">
         <Row className="w-100">
           <Col xs="12">
             <Button

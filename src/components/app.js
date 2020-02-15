@@ -1,26 +1,63 @@
 import React from "react";
+import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";
-import TitlesDisplay from "./display_box/";
-import Header from "./header";
-import SearchForm from "./search_form";
 import LoadingSpinner from "./loading_spinner";
-import {PreviewModal, UpdateModal, InfoModal, DeleteModal} from "./modals";
+import { connect, useDispatch } from "react-redux";
+import {
+  PreviewModal,
+  UpdateModal,
+  InfoModal,
+  DeleteModal,
+  UserModal,
+  AccountDeleteModal
+} from "./modals";
+import { AuthenticatedView } from "./views";
+import { Router, Switch, Route } from "react-router-dom";
+import UserAuthentication from "./views/unauthenticated/authentication/UserAuthentication";
+import LandingView from "./views/unauthenticated/landing/LandingView";
+// import ShareView from "./views/share/ShareView";
+import { hideAlert } from "../state/actions";
 
-const App = () => {
+const App = props => {
+  const dispatch = useDispatch();
   return (
-    <div>
+    <Router history={props.history}>
       <Container>
-        <Header />
-        <SearchForm />
-        <br />
-        <TitlesDisplay />
+        <Alert
+          variant={props.alertType}
+          dismissible
+          show={props.alertVis}
+          className="text-center"
+          onClose={() => dispatch(hideAlert())}
+        >
+          <Alert.Heading>{props.alertHeading}</Alert.Heading>
+          <p>{props.alertMessage}</p>
+        </Alert>
+        <Switch>
+          <Route path="/" exact component={LandingView} />
+          <Route path="/authentication" exact component={UserAuthentication} />
+          <Route path="/user/:username" exact component={AuthenticatedView} />
+          {/* <Route path="/view/:username" exact component={ShareView}/> */}
+        </Switch>
       </Container>
+
       <PreviewModal />
       <InfoModal />
       <UpdateModal />
       <DeleteModal />
+      <UserModal />
+      <AccountDeleteModal history={props.history} />
       <LoadingSpinner />
-    </div>
+    </Router>
   );
 };
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    history: ownProps.history,
+    alertHeading: state.errorAlert.heading,
+    alertMessage: state.errorAlert.message,
+    alertType: state.errorAlert.variant,
+    alertVis: state.errorAlert.visibility
+  };
+};
+export default connect(mapStateToProps)(App);
