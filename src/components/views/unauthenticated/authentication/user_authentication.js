@@ -1,9 +1,13 @@
 import React from "react";
-import Col from "react-bootstrap/Col";
+// Redux
 import { connect } from "react-redux";
+// Bootstrap
+import Col from "react-bootstrap/Col";
+// Custom
 import LoginForm from "./login_form";
 import SignupForm from "./signup_form";
-
+// Styling
+import "./UserAuthentication.css";
 
 const UserAuthentication = props => {
   return (

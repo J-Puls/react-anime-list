@@ -1,4 +1,4 @@
-import { getTitlesByUsername } from "../utils";
+import { getTitlesByUsername } from "../../utils";
 
 export const getShareTitles = (username) => {
     return {

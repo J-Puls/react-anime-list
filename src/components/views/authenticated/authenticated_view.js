@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import AuthenticatedHeader from "./AuthenticatedHeader";
+import { connect } from "react-redux";
+import AuthenticatedHeader from "./authenticated_header";
 import SearchForm from "./search_form";
 import TitlesDisplay from "./display_box/titles_display";
-import { connect } from "react-redux";
 
 const AuthenticatedView = props => {
   useEffect(() => {
@@ -32,7 +32,7 @@ const AuthenticatedView = props => {
 const mapStateToProps = (state, ownProps) => {
   return {
     history: ownProps.history,
-    titles: state.titles,
+    titles: state.userTitles,
     isLoggedIn: state.userCreds.isLoggedIn
   };
 };

@@ -1,0 +1,10 @@
+.user-nav-img {
+  width: 30px !important;
+  height: 30px !important;
+}
+.logoutBtn img {
+  transition-duration: 0.2s;
+}
+.logoutBtn:hover img {
+  filter: brightness(10);
+}

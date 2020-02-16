@@ -1,0 +1,12 @@
+.figure-img {
+  object-fit: cover;
+}
+
+figure .lead {
+  display: -webkit-box;
+  line-height: 1.5em;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+}

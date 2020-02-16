@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import logo from "./assets/no-bkg.svg";
 import { useDispatch } from "react-redux";
-import { setAuthFormToLogin } from "../../../../state/actions";
+import { setAuthFormToLogin } from "state/actions";
 
 const LandingView = props => {
   const dispatch = useDispatch();

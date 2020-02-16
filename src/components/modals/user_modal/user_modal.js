@@ -1,4 +1,12 @@
 import React from "react";
+// Redux
+import { useDispatch, connect } from "react-redux";
+import {
+  closeUserModal,
+  changeAccountDetails,
+  openAccountDeleteModal
+} from "state/actions";
+// Bootstrap
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,12 +14,7 @@ import Modal from "react-bootstrap/Modal";
 import Image from "react-bootstrap/Image";
 import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
-import { useDispatch, connect } from "react-redux";
-import {
-  closeUserModal,
-  changeAccountDetails,
-  openAccountDeleteModal
-} from "../../../state/actions";
+// Util
 import { formatDate } from "./formatDate";
 
 const UserModal = props => {
@@ -130,7 +133,7 @@ const mapStateToProps = state => {
     motto: state.userCreds.motto,
     location: state.userCreds.location,
     token: state.userCreds.session_token,
-    collectionSize: state.titles.size,
+    collectionSize: state.userTitles.size,
     signupDate: state.userCreds.signup_date
   };
 };

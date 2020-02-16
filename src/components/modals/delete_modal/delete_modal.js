@@ -1,11 +1,13 @@
 import React from "react";
+// Redux
+import { connect, useDispatch } from "react-redux";
+import { closeDeleteModal, removeTitle } from "state/actions";
+// Bootstrap
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import { connect, useDispatch } from "react-redux";
-import { closeDeleteModal, removeTitle } from "../../../state/actions";
 
 const DeleteModal = props => {
   const dispatch = useDispatch();

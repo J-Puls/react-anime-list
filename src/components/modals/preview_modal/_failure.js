@@ -1,14 +1,16 @@
 import React from "react";
+// Redux
+import { useDispatch } from "react-redux";
+import { closePreviewModal } from "../../../state/actions";
+// Bootstrap
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
-import { useDispatch } from "react-redux";
-import {  closePreviewModal } from '../../../state/actions';
 
 const FailurePreviewModal = props => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   return (
     <div>
       <Modal.Header className="bg-danger text-light">
@@ -18,7 +20,11 @@ const FailurePreviewModal = props => {
       <Row className="mx-0">
         <Col xs="12">
           <Container>
-              <p className="lead text-center text-light">We couldn't find anything for that.<br/>Please try a different search term.</p>
+            <p className="lead text-center text-light">
+              We couldn't find anything for that.
+              <br />
+              Please try a different search term.
+            </p>
           </Container>
         </Col>
       </Row>
@@ -37,6 +43,6 @@ const FailurePreviewModal = props => {
       </Modal.Footer>
     </div>
   );
-}
+};
 
 export default FailurePreviewModal;

@@ -1,4 +1,4 @@
-import { getUpdatedInfo, appendTitleToDB, removeTitleFromDB, saveChangesToDB } from "../utils";
+import { getUpdatedInfo, appendTitleToDB, removeTitleFromDB, saveChangesToDB } from "../../utils";
 import { trackPromise } from "react-promise-tracker";
 
 const titlesListReducer = (state = new Set(), action, root) => {

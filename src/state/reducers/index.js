@@ -1,21 +1,21 @@
-import titles from "./titleListReducer";
-import newTitles from "./newTitleReducer";
+import userTitles from "./titles/user_titles_reducer";
+import searchResults from "./titles/search_results_reducer";
 import previewModal from "./modals/previewModalReducer";
 import infoModal from "./modals/infoModalReducer";
 import updateModal from "./modals/updateModalReducer";
 import deleteModal from "./modals/deleteModalReducer";
 import userModal from "./modals/userModalReducer";
 import accountDeleteModal from "./modals/accountDeleteModalReducer";
-import formSelection from "./formSelectionReducer";
-import userCreds from "./userCredsReducer"
+import formSelection from "./user/formSelectionReducer";
+import userCreds from "./user/userCredsReducer"
 import errorAlert from "./alerts/errorAlertReducer";
-import shareTitles from "./shareTitlesReducer";
+import shareTitles from "./titles/share_titles_reducer";
 
 // combineReducers alternative
 export const allReducers = (state={}, action) => {
     return ({
-        titles: titles(state.titles, action, state),
-        newTitles: newTitles(state.newTitles, action, state),
+        userTitles: userTitles(state.userTitles, action, state),
+        searchResults: searchResults(state.searchResults, action, state),
         previewModal: previewModal(state.previewModal, action, state),
         infoModal: infoModal(state.infoModal, action, state),
         updateModal: updateModal(state.updateModal, action, state),

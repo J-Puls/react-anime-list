@@ -1,11 +1,13 @@
 import React from "react";
+// Redux
+import { closeAccountDeleteModal,deleteAccount,closeUserModal } from "state/actions";
+import { connect, useDispatch } from "react-redux";
+// Bootstrap
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import { connect, useDispatch } from "react-redux";
-import { closeAccountDeleteModal, deleteAccount, closeUserModal } from "../../../state/actions";
 
 const AccountDeleteModal = props => {
   const dispatch = useDispatch();
@@ -13,15 +15,14 @@ const AccountDeleteModal = props => {
     dispatch(closeAccountDeleteModal());
     dispatch(closeUserModal());
     dispatch(deleteAccount(props.token));
-    props.history.push('/');
-
+    props.history.push("/");
   };
   return (
     <Modal show={props.visible}>
       <Modal.Header className="text-light">
         <Modal.Title>Confirm Account Deletion</Modal.Title>
       </Modal.Header>
-      <Modal.Body id="previewModalBody bkg-black"/>
+      <Modal.Body id="previewModalBody bkg-black" />
       <Row className="bkg-black mx-0">
         <Col xs="12">
           <Container>

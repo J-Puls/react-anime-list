@@ -1,6 +1,6 @@
 import { trackPromise } from "react-promise-tracker";
 import {fetchUserInfo} from "./fetchUserInfo";
-import { getAuthorizedUserTitles} from "./getAuthorizedUserTitles";
+import { getAuthorizedUserTitles} from "../titles/getAuthorizedUserTitles";
 
 export const signup = async (data) => {
     const rawResponse = await trackPromise(fetch('https://us-central1-react-anime-list.cloudfunctions.net/api/user/signup', {

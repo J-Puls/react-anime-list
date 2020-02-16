@@ -1,22 +1,21 @@
 import React from "react";
+// React Router
+import { Router, Switch, Route } from "react-router-dom";
+// Redux
+import { connect, useDispatch } from "react-redux";
+import { hideAlert } from "state/actions";
+// Bootstrap
 import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";
-import LoadingSpinner from "./loading_spinner";
-import { connect, useDispatch } from "react-redux";
-import {
-  PreviewModal,
-  UpdateModal,
-  InfoModal,
-  DeleteModal,
-  UserModal,
-  AccountDeleteModal
-} from "./modals";
-import { AuthenticatedView } from "./views";
-import { Router, Switch, Route } from "react-router-dom";
-import UserAuthentication from "./views/unauthenticated/authentication/UserAuthentication";
-import LandingView from "./views/unauthenticated/landing/LandingView";
+// Custom
+import LoadingSpinner from "components/loading_spinner";
+import { PreviewModal, UpdateModal, InfoModal,
+  DeleteModal, UserModal, AccountDeleteModal } from "components/modals";
+import { AuthenticatedView } from "components/views";
+import UserAuthentication from "components/views/unauthenticated/authentication/user_authentication";
+import LandingView from "components/views/unauthenticated/landing/landing_view";
 // import ShareView from "./views/share/ShareView";
-import { hideAlert } from "../state/actions";
+
 
 const App = props => {
   const dispatch = useDispatch();
@@ -40,7 +39,6 @@ const App = props => {
           {/* <Route path="/view/:username" exact component={ShareView}/> */}
         </Switch>
       </Container>
-
       <PreviewModal />
       <InfoModal />
       <UpdateModal />

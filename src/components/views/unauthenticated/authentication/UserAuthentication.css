@@ -1,0 +1,92 @@
+/* Genreral input styling */
+.auth-input {
+  height: 3.5rem;
+  font-weight: 700;
+  color: #666;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  caret-color: #dc3545;
+  transition-duration: 0.3s;
+  padding-bottom: 4px;
+  max-width: 100%;
+}
+.auth-login-input {
+  font-size: 3rem;
+}
+.auth-signup-input {
+  font-size: 2rem;
+}
+.auth-input:focus {
+  border-bottom: 3px solid #dc3545;
+  outline: none;
+  color: #dc3545;
+  width: 100% !important;
+}
+.auth-input::placeholder {
+  color: #dddddd;
+  transition-duration: 0.3s;
+}
+.auth-input:focus::placeholder {
+  color: #333;
+}
+
+/* Individual input starting widths */
+#login-email {
+  width: 9rem;
+  margin-top: 1.5em;
+}
+#login-password {
+  width: 15rem;
+}
+#signup-username {
+  width: 14rem;
+}
+#signup-email {
+  width: 5rem;
+}
+#signup-password {
+  width: 9rem;
+}
+#signup-confirm-password {
+  width: 17rem;
+}
+
+/* Rocket Animation */
+@keyframes rocketLanding {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  33% {
+    opacity: 0.2;
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.rocket-landing {
+  position: absolute;
+  top: 0;
+  left: 37%;
+  animation: rocketLanding ease-out 1.5s 1s both;
+}
+
+@keyframes rocketLanded {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.rocket-landed {
+  position: absolute;
+  top: 0;
+  left: 37.2%;
+  animation: rocketLanded 0.3s 2.2s both;
+}

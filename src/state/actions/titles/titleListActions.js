@@ -1,4 +1,4 @@
-import { getAuthorizedUserTitles } from "../utils";
+import { getAuthorizedUserTitles } from "../../utils";
 
 export const getUserTitles = (token) => {
     return {

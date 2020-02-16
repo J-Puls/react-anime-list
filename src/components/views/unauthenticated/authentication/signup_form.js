@@ -1,11 +1,20 @@
 import React, { useEffect } from "react";
+// Redux
+import { connect, useDispatch } from "react-redux";
+import {
+  setAuthFormToLogin,
+  authenticateAndSignUp,
+  showAlert
+} from "state/actions";
+// Bootstrap
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import { connect, useDispatch } from "react-redux";
-import { setAuthFormToLogin, authenticateAndSignUp, showAlert } from "../../../../state/actions";
-import signupInputAnimation from "./signupInputAnimation";
+// Custom
+import InputUnderline from "./input_underline.js";
+// Form animation
+import signupInputAnimation from "./signup_input_animation";
 
 const SignupForm = props => {
   const dispatch = useDispatch();
@@ -20,14 +29,16 @@ const SignupForm = props => {
 
     dispatch(authenticateAndSignUp(data)).then(response => {
       if (response.action.payload.token) {
-        props.history.push(`/user/${response.action.payload.userCreds.username}`)
+        props.history.push(
+          `/user/${response.action.payload.userCreds.username}`
+        );
       } else {
-        dispatch(showAlert())
+        dispatch(showAlert());
       }
     });
   };
-  
-  useEffect(() => signupInputAnimation(), [])
+
+  useEffect(() => signupInputAnimation(), []);
 
   return (
     <Form id="signupForm" onSubmit={e => signup(e)}>
@@ -40,9 +51,8 @@ const SignupForm = props => {
             className="auth-input auth-signup-input"
             required
             placeholder="username"
-            
           ></input>
-          <div id="signup-username-underline"></div>
+          <InputUnderline tar="signup-username" />
           <br />
           <input
             type="email"
@@ -51,7 +61,7 @@ const SignupForm = props => {
             required
             placeholder="email"
           ></input>
-          <div id="signup-email-underline"></div>
+          <InputUnderline tar="signup-email" />
           <br />
           <input
             type="password"
@@ -60,7 +70,7 @@ const SignupForm = props => {
             required
             placeholder="password"
           ></input>
-          <div id="signup-password-underline"></div>
+          <InputUnderline tar="signup-password" />
           <br />
           <input
             type="password"
@@ -69,7 +79,7 @@ const SignupForm = props => {
             required
             placeholder="confirm password"
           ></input>
-          <div id="signup-confirm-password-underline"></div>
+          <InputUnderline tar="signup-confirm-password" />
         </Col>
         <Col xs="12" sm="6" className="text-center">
           <Button

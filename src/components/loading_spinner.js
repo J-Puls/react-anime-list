@@ -1,8 +1,8 @@
 import React from "react";
-import rocket from "../assets/rocket-animation.svg";
+import rocket from "assets/rocket-animation.svg";
 import { usePromiseTracker } from "react-promise-tracker";
+import "./LoadingSpinner.css";
 
-// if fetch call is initiated, loading spinner is rendered
 const LoadingSpinner = props => {
   const { promiseInProgress } = usePromiseTracker();
 

@@ -1,13 +1,16 @@
 import React from "react";
+// Redux
+import { useSelector, connect, useDispatch } from "react-redux";
+import { openPreviewModal, search } from "state/actions";
+// Bootstrap
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
-import { connect, useDispatch } from "react-redux";
-import { search } from "../../../state/actions";
-import { useSelector } from "react-redux";
-import { openPreviewModal } from "../../../state/actions";
+// Loading animation trigger
 import { trackPromise } from "react-promise-tracker";
+// Styling
+import "./SearchForm.css";
 
 const SearchForm = props => {
   const dispatch = useDispatch();
@@ -20,7 +23,6 @@ const SearchForm = props => {
 
   return (
     <Col xs="12" md="8" className="mx-auto p-3 text-light mb-2 fade-in">
-
       <Form
         id="searchForm"
         onSubmit={e => {
@@ -28,17 +30,22 @@ const SearchForm = props => {
         }}
       >
         <InputGroup className="mb-3">
-        
-        <input
+          <input
             type="text"
             id="title"
-            className="search-input auth-input w-75"
+            className="search-input w-75"
             size="lg"
             required
             placeholder="search"
           ></input>
           <InputGroup.Append className="w-25">
-            <Button type="submit" variant="danger" className="w-100 font-weight-bolder">Find It</Button>
+            <Button
+              type="submit"
+              variant="danger"
+              className="w-100 font-weight-bolder"
+            >
+              Find It
+            </Button>
           </InputGroup.Append>
         </InputGroup>
       </Form>

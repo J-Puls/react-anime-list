@@ -1,4 +1,4 @@
-import { login, sendAccountChanges, uploadAvatar } from "../utils";
+import { login, sendAccountChanges, uploadAvatar } from "../../utils";
 
 export const authenticateAndLogIn = (email, password) => {
     return {

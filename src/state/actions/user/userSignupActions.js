@@ -1,4 +1,4 @@
-import {signup, sendDeleteRequest} from "../utils"
+import {signup, sendDeleteRequest} from "../../utils"
 
 export const authenticateAndSignUp = (data) => {
     return {

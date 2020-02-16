@@ -1,5 +1,5 @@
 import { trackPromise } from "react-promise-tracker";
-import { getAuthorizedUserTitles } from "./getAuthorizedUserTitles"; 
+import { getAuthorizedUserTitles } from "../titles/getAuthorizedUserTitles"; 
 import { fetchUserInfo } from "./fetchUserInfo";
 
 

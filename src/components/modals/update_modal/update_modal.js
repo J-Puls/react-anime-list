@@ -1,4 +1,8 @@
 import React from "react";
+// Redux
+import { useDispatch, connect } from "react-redux";
+import { closeUpdateModal, saveTitleChanges } from "state/actions";
+// Bootstrap
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -7,10 +11,9 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import FormLabel from "react-bootstrap/FormLabel";
-import { useDispatch, connect } from "react-redux";
-import { closeUpdateModal, saveTitleChanges } from "../../../state/actions";
 
 const UpdateModal = props => {
+  const title = props.title;
   const dispatch = useDispatch();
   const save = async () => {
     await dispatch(saveTitleChanges(props.token, props.title.mal_id));
@@ -25,7 +28,7 @@ const UpdateModal = props => {
       enforceFocus
     >
       <Modal.Header className="text-light">
-        <Modal.Title>{props.title.title}</Modal.Title>
+        <Modal.Title>{title.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body className="bkg-black" id="previewModalBody">
         <Row className="mb-3 mx-0 bkg-black">
@@ -37,7 +40,7 @@ const UpdateModal = props => {
               <InputGroup>
                 <FormControl
                   id="updateTitle"
-                  defaultValue={props.title.title}
+                  defaultValue={title.title}
                   aria-label="title"
                 ></FormControl>
               </InputGroup>
@@ -50,7 +53,7 @@ const UpdateModal = props => {
                   as="textarea"
                   rows="5"
                   id="updateSynopsis"
-                  defaultValue={props.title.synopsis}
+                  defaultValue={title.synopsis}
                   aria-label="synopsis"
                 ></FormControl>
               </InputGroup>
@@ -63,7 +66,7 @@ const UpdateModal = props => {
 
                   <Form.Check
                     type="switch"
-                    defaultChecked={props.title.airing}
+                    defaultChecked={title.airing}
                     id="updateAiring"
                     label=""
                   />
@@ -76,7 +79,7 @@ const UpdateModal = props => {
                     <FormControl
                       id="updateEpisodes"
                       type="number"
-                      defaultValue={props.title.episodes}
+                      defaultValue={title.episodes}
                       aria-label="episodes"
                     ></FormControl>
                   </InputGroup>
@@ -92,7 +95,7 @@ const UpdateModal = props => {
                       min={1}
                       max={10}
                       step={0.5}
-                      defaultValue={props.title.score}
+                      defaultValue={title.score}
                       aria-label="score"
                     ></FormControl>
                   </InputGroup>
@@ -105,7 +108,7 @@ const UpdateModal = props => {
                     <FormControl
                       id="updateRated"
                       as="select"
-                      defaultValue={props.title.rated}
+                      defaultValue={title.rated}
                       aria-label="rating"
                     >
                       <option value="G">G</option>

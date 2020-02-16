@@ -1,14 +1,16 @@
-import React, {useEffect} from "react";
-import AuthenticatedHeader from "../authenticated/AuthenticatedHeader";
-import ShareHeader from "./ShareHeader";
-import TitlesDisplay from "./display_box/titles_display";
+import React, { useEffect } from "react";
+// Redux
 import { connect, useDispatch } from "react-redux";
-import { getShareTitles } from "../../../state/actions";
+import { getShareTitles } from "state/actions";
+// Custom
+import AuthenticatedHeader from "../authenticated/authenticated_header";
+import ShareHeader from "./share_header";
+import TitlesDisplay from "./display_box/titles_display";
 
 const ShareView = props => {
-    // const dispatch = useDispatch();
-    // const username = props.location.pathname.split('/')[ props.location.pathname.split('/').length - 1];
-    // useEffect(dispatch(getShareTitles(username)), []);
+  // const dispatch = useDispatch();
+  // const username = props.location.pathname.split('/')[ props.location.pathname.split('/').length - 1];
+  // useEffect(dispatch(getShareTitles(username)), []);
 
   return (
     <div>

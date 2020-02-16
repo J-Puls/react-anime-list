@@ -1,17 +1,20 @@
 import React from "react";
-import Modal from "react-bootstrap/Modal";
+// Redux
+import { closePreviewModal, resetSearchResults } from "state/actions";
 import { connect, useDispatch } from "react-redux";
+// Bootstrap
+import Modal from "react-bootstrap/Modal";
+// Custom
 import FailurePreviewModal from "./_failure";
 import SuccessPreviewModal from "./_success";
-import {closePreviewModal, resetSearchResults} from "../../../state/actions";
 
 const PreviewModal = props => {
   const dispatch = useDispatch();
   const close = () => {
     dispatch(resetSearchResults());
     dispatch(closePreviewModal());
-  }
-  const title = props.titles[props.selectedTitle];
+  };
+  const title = props.results[props.selectedTitle];
   return (
     <Modal
       show={props.visible}
@@ -29,8 +32,8 @@ const PreviewModal = props => {
 const mapStateToProps = state => {
   return {
     visible: state.previewModal,
-    titles: state.newTitles.results,
-    selectedTitle: state.newTitles.selectedResult
+    results: state.searchResults.results,
+    selectedTitle: state.searchResults.selectedResult
   };
 };
 

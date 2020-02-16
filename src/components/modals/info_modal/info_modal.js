@@ -1,24 +1,18 @@
 import React from "react";
+// Redux
+import { useDispatch, connect } from "react-redux";
+import { closeInfoModal } from "state/actions";
+// Bootstrap
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
-import { useDispatch, connect } from "react-redux";
-import { closeInfoModal } from "../../../state/actions";
 
 const InfoModal = props => {
-  let airing;
+  const title = props.title;
   const dispatch = useDispatch();
-  switch (props.title.airing) {
-    case true:
-      airing = "Yes";
-      break;
-    case false:
-      airing = "No";
-      break;
-    default:
-      break;
-  }
+  let airing;
+  props.title.airing ? (airing = "Yes") : (airing = "No");
 
   return (
     <Modal
@@ -29,15 +23,15 @@ const InfoModal = props => {
       enforceFocus
     >
       <Modal.Header closeButton className="text-light">
-        <Modal.Title>{props.title.title}</Modal.Title>
+        <Modal.Title>{title.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body className="bkg-black" id="previewModalBody">
         <Row className="bkg-black mx-0">
           <Col xs="4" className="mx-auto">
             <img
-              src={props.title.image_url}
+              src={title.image_url}
               className="figure-img img-fluid rounded"
-              alt={props.title.title + " thumbnail"}
+              alt={title.title + " thumbnail"}
             ></img>
           </Col>
           <Col className="container" xs="10">
@@ -45,14 +39,14 @@ const InfoModal = props => {
               <span className="lead text-danger font-weight-bolder">
                 Title:{" "}
               </span>
-              <span className="text-light">{props.title.title}</span>
+              <span className="text-light">{title.title}</span>
             </p>
             <p>
               <span className="lead text-danger font-weight-bolder">
                 Synopsis:
                 <br />
               </span>
-              <span>{props.title.synopsis}</span>
+              <span>{title.synopsis}</span>
             </p>
             <p>
               <span className="lead text-danger font-weight-bolder">
@@ -64,19 +58,19 @@ const InfoModal = props => {
               <span className="lead text-danger font-weight-bolder">
                 # of episodes:{" "}
               </span>
-              <span>{props.title.episodes}</span>
+              <span>{title.episodes}</span>
             </p>
             <p>
               <span className="lead text-danger font-weight-bolder">
                 Score:{" "}
               </span>
-              <span>{props.title.score} / 10</span>
+              <span>{title.score} / 10</span>
             </p>
             <p>
               <span className="lead text-danger font-weight-bolder">
                 Rated:{" "}
               </span>
-              <span>{props.title.rated}</span>
+              <span>{title.rated}</span>
             </p>
             <small className="text-muted ">
               All data was retrieved from MyAnimeList.net via the Jikan API
@@ -87,7 +81,7 @@ const InfoModal = props => {
       <Modal.Footer>
         <Button
           variant="outline-danger"
-          href={props.title.url}
+          href={title.url}
           target="_blank"
           rel="noopener"
           className="w-100"

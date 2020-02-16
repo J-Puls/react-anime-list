@@ -1,25 +1,30 @@
 import React from "react";
+// Redux
+import { connect, useDispatch } from "react-redux";
+import { openUserModal, logout } from "state/actions";
+// Bootstrap
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
-import { connect, useDispatch } from "react-redux";
-import rocket from "../../../assets/rocket.svg";
-import { openUserModal, logout } from "../../../state/actions";
-import logoutIcon from "../../../assets/logout.svg";
+// Custom Icons
+import rocket from "assets/rocket.svg";
+import logoutIcon from "assets/logout.svg";
+// Styling
+import "./AuthenticatedHeader.css";
 
 const AuthenticatedHeader = props => {
   const dispatch = useDispatch();
   const handleLogoutClick = e => {
     e.preventDefault();
     dispatch(logout());
-    props.history.push('/');
+    props.history.push("/");
   };
 
   return (
     <Navbar variant="dark" id="navbar" expand="md">
-      <Navbar.Brand className="slide-in-right">
-        <Image src={rocket} fluid className="p-2" />
+      <Navbar.Brand className="slide-in-right h-100">
+        <Image src={rocket} fluid className="p-2 my-1 h-75" />
         Anime Orbiter
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -45,7 +50,8 @@ const AuthenticatedHeader = props => {
               className="ml-1 logoutBtn"
               variant="outline-danger"
               onClick={e => handleLogoutClick(e)}
-            >Deorbit&nbsp;
+            >
+              Deorbit&nbsp;
               <Image src={logoutIcon} />
             </Button>
           </Nav.Item>

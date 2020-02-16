@@ -1,4 +1,4 @@
-import { findTitle } from "../utils"
+import { findTitle } from "../../utils"
 
 export const search = (titles) => {
     const query = document.getElementById('title').value;

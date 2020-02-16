@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import UserAuthentication from "./authentication/UserAuthentication";
-import LandingView from "./landing/LandingView";
+import UserAuthentication from "./authentication/user_authentication";
+import LandingView from "./landing/landing_view";
 
 const UnauthenticatedView = props => {
   return (

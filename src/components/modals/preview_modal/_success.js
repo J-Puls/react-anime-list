@@ -1,20 +1,23 @@
 import React from "react";
+// Redux
+import { useDispatch, connect } from "react-redux";
+import { addTitle, nextTitle, prevTitle } from "state/actions";
+// Bootstrap
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Modal from "react-bootstrap/Modal";
 import Image from "react-bootstrap/Image";
-import { useDispatch, connect } from "react-redux";
-import { addTitle, nextTitle, prevTitle } from "../../../state/actions";
-import { Rocket } from "../../loading_spinner";
+// Custom
+import { Rocket } from "components/loading_spinner";
 
 const SuccessPreviewModal = props => {
+  const title = props.title;
   const dispatch = useDispatch();
   const confirm = () => {
     dispatch(addTitle(props.token, props.title));
   };
 
-  const title = props.title;
   return (
     <div>
       <Modal.Header closeButton className="text-light">

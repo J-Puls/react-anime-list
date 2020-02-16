@@ -5,7 +5,7 @@ import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useDispatch } from "react-redux";
-import { openInfoModal } from "../../../../state/actions";
+import { openInfoModal } from "state/actions";
 import infoIconBlue from "./assets/info-icon-blue.svg";
 
 const ShareTitleObject = props => {
