@@ -104,11 +104,17 @@ const UserModal = props => {
               Close
             </Button>
           </Col>
-          <Col xs="12" className="text-center pt-4">
-            <a href="/" className="text-danger" onClick={e => handleDelete(e)}>
-              Delete Account
-            </a>
-          </Col>
+          {props.username !== "testuser" && (
+            <Col xs="12" className="text-center pt-4">
+              <a
+                href="/"
+                className="text-danger"
+                onClick={e => handleDelete(e)}
+              >
+                Delete Account
+              </a>
+            </Col>
+          )}
         </Row>
       </Modal.Footer>
     </Modal>
